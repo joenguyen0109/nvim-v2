@@ -51,7 +51,12 @@ return packer.startup(function(use)
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		commit = "f2778bd1a28b74adf5b1aa51aa57da85adfa3d16",
 	}
+	-- use {
+	-- 	"nvim-treesitter-textobjects",
+	-- 	commit = "35a60f093fa15a303874975f963428a5cd24e4a0",
+	-- }
 
 	use "nvim-tree/nvim-tree.lua"
 	use "nvim-tree/nvim-web-devicons"
