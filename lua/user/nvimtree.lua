@@ -10,7 +10,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- OR setup with some options
 require("nvim-tree").setup({
-  sort_by = "case_sensitive",
+  sort_by = "modification_time",
   view = {
     width = 30,
   },
