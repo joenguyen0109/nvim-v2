@@ -45,10 +45,11 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
-
+  -- Colors
 	use "folke/tokyonight.nvim"
 	use "rebelot/kanagawa.nvim"
 
+  -- Nvim tree
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -62,7 +63,7 @@ return packer.startup(function(use)
 	use "nvim-tree/nvim-tree.lua"
 	use "nvim-tree/nvim-web-devicons"
 
-	
+  -- telescope	
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',
 		-- or                            , branch = '0.1.x',
@@ -102,6 +103,7 @@ return packer.startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+  use { "jose-elias-alvarez/null-ls.nvim", commit = "c0c19f32b614b3921e17886c541c13a72748d450" }
 	
 	use { "goolord/alpha-nvim", commit = "0bb6fc0646bcd1cdb4639737a1cee8d6e08bcc31"}
 
