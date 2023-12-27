@@ -1,4 +1,4 @@
-local colorscheme = "kanagawa"
+local colorscheme = "tokyonight"
 
 require("tokyonight").setup({
   -- your configuration comes here

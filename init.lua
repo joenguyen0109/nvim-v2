@@ -11,6 +11,7 @@ require "user.alpha"
 require "user.comments"
 require "user.autopairs"
 require "user.terminal"
+require "user.flutter"
 
 vim.g.indentLine_enabled = 1 
 vim.g.indent_blankline_char = "│"

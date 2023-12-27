@@ -13,12 +13,18 @@ require("nvim-tree").setup({
   sort_by = "modification_time",
   view = {
     width = 30,
+    preserve_window_proportions = false,
   },
   renderer = {
     group_empty = true,
   },
   filters = {
     dotfiles = true,
+  },
+  actions = {
+    open_file = {
+      resize_window = true,
+    },
   },
 })
 -- vim.api.nvim_set_hl(0,"NvimTreeNormal",{bg="none"})
