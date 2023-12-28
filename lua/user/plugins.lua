@@ -48,6 +48,7 @@ return packer.startup(function(use)
   -- Colors
 	use "folke/tokyonight.nvim"
 	use "rebelot/kanagawa.nvim"
+  use "ellisonleao/gruvbox.nvim"
 
   -- Nvim tree
 	use {
@@ -71,7 +72,7 @@ return packer.startup(function(use)
 	}
 	
 	-- transparent 
-	use "xiyaowong/transparent.nvim"
+	-- use "xiyaowong/transparent.nvim"
 
 	use { "lukas-reineke/indent-blankline.nvim", commit = "db7cbcb40cc00fc5d6074d7569fb37197705e7f6" }
 
