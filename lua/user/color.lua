@@ -1,4 +1,4 @@
-local colorscheme = "tokyonight"
+local colorscheme = "kanagawa"
 
 require("tokyonight").setup({
   -- your configuration comes here
@@ -55,7 +55,7 @@ require('kanagawa').setup({
     overrides = function(colors) -- add/modify highlights
         return {}
     end,
-    theme = "dragon",              -- Load "wave" theme when 'background' option is not set
+    theme = "wave",              -- Load "wave" theme when 'background' option is not set
     background = {               -- map the value of 'background' option to a theme
         dark = "dragon",           -- try "dragon" !
         light = "lotus"
