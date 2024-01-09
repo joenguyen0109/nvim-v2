@@ -71,3 +71,7 @@ keymap("n", "<leader>sa", ":wa<CR>",opts)
 keymap("n", "<leader>s", ":w<CR>",opts)
 keymap("n", "<leader>\\", "%",opts)
 keymap("n", "<leader>p", ":Telescope diagnostics<CR>",opts)
+
+-- stop default yanking by mapping p to P
+vim.api.nvim_set_keymap('x', 'p', 'P', { noremap = true })
+
