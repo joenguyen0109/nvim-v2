@@ -63,7 +63,7 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 
-keymap("n", "<leader>w", ":wa | :bd<CR>", opts)
+keymap("n", "<leader>w", ":wa | :q<CR>", opts)
 keymap("n", "|", ":vsplit<CR>",opts)
 keymap("n", "<leader>uh", ":noh<CR>",opts)
 keymap("n", "<leader>cg", ":wa | :BufferLineCloseOthers<CR>",opts)
@@ -71,6 +71,7 @@ keymap("n", "<leader>sa", ":wa<CR>",opts)
 keymap("n", "<leader>s", ":w<CR>",opts)
 keymap("n", "<leader>\\", "%",opts)
 keymap("n", "<leader>p", ":Telescope diagnostics<CR>",opts)
+keymap("n", "<leader>th", ":Telescope colorscheme<CR>",opts)
 
 -- stop default yanking by mapping p to P
 vim.api.nvim_set_keymap('x', 'p', 'P', { noremap = true })

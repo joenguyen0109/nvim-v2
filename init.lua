@@ -13,6 +13,7 @@ require "user.comments"
 require "user.autopairs"
 require "user.terminal"
 require "user.flutter"
+require "user.gitsigns"
 
 vim.g.indentLine_enabled = 1 
 vim.g.indent_blankline_char = "│"

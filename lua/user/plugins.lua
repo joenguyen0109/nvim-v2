@@ -49,6 +49,7 @@ return packer.startup(function(use)
 	use "folke/tokyonight.nvim"
 	use "rebelot/kanagawa.nvim"
   use "ellisonleao/gruvbox.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Nvim tree
 	use {
@@ -140,6 +141,11 @@ return packer.startup(function(use)
       }
     end
   }
+  
+  use {
+    "lewis6991/gitsigns.nvim"
+  }
+
 
 
  
