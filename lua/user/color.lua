@@ -1,4 +1,4 @@
-local colorscheme = "kanagawa"
+local colorscheme = "gruvbox"
 
 require("tokyonight").setup({
   -- your configuration comes here

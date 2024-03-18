@@ -73,6 +73,3 @@ keymap("n", "<leader>\\", "%",opts)
 keymap("n", "<leader>p", ":Telescope diagnostics<CR>",opts)
 keymap("n", "<leader>th", ":Telescope colorscheme<CR>",opts)
 
--- stop default yanking by mapping p to P
-vim.api.nvim_set_keymap('x', 'p', 'P', { noremap = true })
-
