@@ -8,6 +8,7 @@ vim.keymap.set("n", "<leader>h", "<C-w><C-h>", { desc = "Move focus to the left 
 vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<leader>1", "<C-w>w", { desc = "focus to the first window" })
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Quick Esc" })
 vim.keymap.set("n", "<C-k>", ":resize -2<CR>", { desc = "Resize with arrows up" })
@@ -23,9 +24,10 @@ vim.keymap.set("n", "<leader>uh", ":noh<CR>", { desc = "Unhighlight" })
 vim.keymap.set("v", "<", "<gv", { desc = "Stay in indent mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Stay in indent mode" })
 vim.keymap.set("n", "<leader>\\", "%", { desc = "Jump to the end of bracket" })
-vim.keymap.set("n", "<leader>e", ":Neotree toggle<cr>", { desc = "Toggle explorer" })
+vim.keymap.set("n", "<leader>e", ":Neotree focus<cr>", { desc = "Toggle explorer" })
 vim.keymap.set("n", "<leader>th", ":Telescope colorscheme<cr>", { desc = "Theme" })
 vim.keymap.set("n", "<leader><Tab>", ":b#<cr>", { desc = "Previous buffer" })
+vim.keymap.set("v", "p", '"_dP', { desc = "Stop yanking" })
 
 -- local opts = { noremap = true, silent = true }
 --
@@ -130,7 +132,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -159,7 +161,7 @@ local options = {
 	-- mouse = 'a', -- allow the mouse to be used in neovim
 	-- pumheight = 10, -- pop up menu height
 	-- showmode = false, -- we don't need to see things like -- INSERT -- anymore
-	-- showtabline = 2, -- always show tabs
+	showtabline = 0, -- always show tabs
 	-- smartcase = true, -- smart case
 	-- smartindent = true, -- make indenting smarter again
 	-- splitbelow = true, -- force all horizontal splits to go below current window
@@ -170,17 +172,17 @@ local options = {
 	-- updatetime = 300, -- faster completion (4000ms default)
 	-- writebackup = true, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	-- expandtab = true, -- convert tabs to spaces
-	-- shiftwidth = 2, -- the number of spaces inserted for each indentation
-	-- tabstop = 2, -- insert 2 spaces for a tab
+	shiftwidth = 2, -- the number of spaces inserted for each indentation
+	tabstop = 2, -- insert 2 spaces for a tab
 	-- cursorline = true, -- highlight the current line
 	-- number = true, -- set numbered lines
 	-- relativenumber = true, -- set relative numbered lines
-	-- numberwidth = 2, -- set number column width to 2 {default 4}
+	numberwidth = 2, -- set number column width to 2 {default 4}
 	-- signcolumn = 'yes', -- always show the sign column, otherwise it would shift the text each time
-	-- wrap = false, -- display lines as one long line
-	-- scrolloff = 8, -- is one of my fav
-	-- sidescrolloff = 8,
-	-- guifont = 'monospace:h17', -- the font used in graphical neovim applications
+	wrap = false, -- display lines as one long line
+	scrolloff = 8, -- is one of my fav
+	sidescrolloff = 8,
+	guifont = "monospace:h17", -- the font used in graphical neovim applications
 }
 --
 for k, v in pairs(options) do
@@ -228,17 +230,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufDelete", {
-	desc = "Close the current buffer and open the previous one",
-	group = vim.api.nvim_create_augroup("Customize delete buffer", { clear = true }),
-	callback = function()
-		local bufferList = vim.api.nvim_list_bufs()
-
-		if #bufferList > 1 then
-			vim.api.nvim_command(":b#|bd#")
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd("BufDelete", {
+-- 	desc = "Close the current buffer and open the previous one",
+-- 	group = vim.api.nvim_create_augroup("Customize delete buffer", { clear = true }),
+-- 	callback = function()
+-- 		local bufferList = vim.api.nvim_list_bufs()
+-- 		if #bufferList > 1 then
+-- 			vim.api.nvim_exec2(":w<cr>", {})
+-- 		end
+-- 	end,
+-- })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -781,7 +782,7 @@ require("lazy").setup({
 					-- Accept ([y]es) the completion.
 					--  This will auto-import if your LSP supports it.
 					--  This will expand snippets if the LSP sent a snippet.
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<enter>"] = cmp.mapping.confirm({ select = true }),
 
 					-- Manually trigger a completion from nvim-cmp.
 					--  Generally you don't need this, because nvim-cmp will display
@@ -971,7 +972,7 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd.colorscheme("tokyonight-night")
+vim.cmd.colorscheme("gruvbox")
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
