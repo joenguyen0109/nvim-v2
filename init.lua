@@ -9,6 +9,7 @@ vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right
 vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<leader>1", "<C-w>w", { desc = "focus to the first window" })
+vim.keymap.set("n", "<leader>of", ":Telescope oldfiles<CR>", { desc = "Open previous files" })
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Quick Esc" })
 vim.keymap.set("n", "<C-k>", ":resize -2<CR>", { desc = "Resize with arrows up" })
