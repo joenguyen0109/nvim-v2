@@ -10,6 +10,9 @@ vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower
 vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<leader>1", "<C-w>w", { desc = "focus to the first window" })
 vim.keymap.set("n", "<leader>of", ":Telescope oldfiles<CR>", { desc = "Open previous files" })
+vim.keymap.set("n", "<leader>fd", ":FlutterDevices<CR>", { desc = "Open list of devices for flutter" })
+vim.keymap.set("n", "<leader>fr", ":FlutterRun<CR>", { desc = "Run flutter project" })
+vim.keymap.set("n", "<leader>fe", ":FlutterEmulators<CR>", { desc = "Open Flutter emulators" })
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Quick Esc" })
 vim.keymap.set("n", "<C-k>", ":resize -2<CR>", { desc = "Resize with arrows up" })
