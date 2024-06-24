@@ -33,6 +33,7 @@ vim.keymap.set("n", "<leader>th", ":Telescope colorscheme<cr>", { desc = "Theme"
 vim.keymap.set("n", "<leader><Tab>", ":b#<cr>", { desc = "Previous buffer" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Stop yanking" })
 
+vim.keymap.set("n", "<leader>sb", "<C-w>x", { desc = "swap two buffers" })
 -- local opts = { noremap = true, silent = true }
 --
 -- -- Shorten function name
