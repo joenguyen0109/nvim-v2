@@ -34,6 +34,7 @@ vim.keymap.set("n", "<leader><Tab>", ":b#<cr>", { desc = "Previous buffer" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Stop yanking" })
 
 vim.keymap.set("n", "<leader>sb", "<C-w>x", { desc = "swap two buffers" })
+vim.g.editorconfig = true
 -- local opts = { noremap = true, silent = true }
 --
 -- -- Shorten function name
@@ -437,11 +438,9 @@ require("lazy").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
+				defaults = {
+					file_ignore_patterns = { "vendor/*" },
+				},
 				pickers = {
 					buffers = {
 						sort_lastused = true,
@@ -980,7 +979,7 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("night-owl")
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
