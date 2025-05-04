@@ -13,6 +13,7 @@ vim.keymap.set("n", "<leader>of", ":Telescope oldfiles<CR>", { desc = "Open prev
 vim.keymap.set("n", "<leader>fd", ":FlutterDevices<CR>", { desc = "Open list of devices for flutter" })
 vim.keymap.set("n", "<leader>fr", ":FlutterRun<CR>", { desc = "Run flutter project" })
 vim.keymap.set("n", "<leader>fe", ":FlutterEmulators<CR>", { desc = "Open Flutter emulators" })
+vim.keymap.set("n", "<leader>ge", ":Telescope diagnostic<CR>", { desc = "Show projects diagnostic" })
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Quick Esc" })
 vim.keymap.set("n", "<C-k>", ":resize -2<CR>", { desc = "Resize with arrows up" })
@@ -979,7 +980,7 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd.colorscheme("night-owl")
+vim.cmd.colorscheme("github_dark")
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
