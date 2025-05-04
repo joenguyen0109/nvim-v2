@@ -30,7 +30,7 @@ vim.keymap.set("v", "<", "<gv", { desc = "Stay in indent mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Stay in indent mode" })
 vim.keymap.set("n", "<leader>\\", "%", { desc = "Jump to the end of bracket" })
 vim.keymap.set("n", "<leader>e", ":Neotree toggle reveal<cr>", { desc = "Toggle explorer" })
-vim.keymap.set("n", "<leader>th", ":Telescope colorscheme<cr>", { desc = "Theme" })
+-- Theme picker keybinding is now defined in lua/custom/plugins/theme_picker.lua
 vim.keymap.set("n", "<leader><Tab>", ":b#<cr>", { desc = "Previous buffer" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Stop yanking" })
 
@@ -980,7 +980,9 @@ require("lazy").setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-vim.cmd.colorscheme("github_dark")
+
+-- Default theme is now handled by theme_picker.lua
+-- It will load the saved theme or fall back to github_dark if none is saved
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
