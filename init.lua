@@ -21,7 +21,18 @@ vim.keymap.set("n", "<C-j>", ":resize +2<CR>", { desc = "Resize with arrows down
 vim.keymap.set("n", "<C-h>", ":vertical resize -2<CR>", { desc = "Resize with arrows left" })
 vim.keymap.set("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Resize with arrows right" })
 vim.keymap.set("n", "<C-l>", ":vertical resize +2<CR>", { desc = "Resize with arrows right" })
-vim.keymap.set("n", "<leader>sa", ":wa<CR>", { desc = "S ve all files" })
+
+vim.keymap.set("n", "<leader>sa", function()
+	-- Save all files first
+	vim.cmd("wa")
+	-- Then format all buffers
+	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].modifiable then
+			require("conform").format({ bufnr = bufnr, async = true })
+		end
+	end
+end, { desc = "Save all files and format all buffers" })
+
 vim.keymap.set("n", "|", ":vsplit<CR>", { desc = "Veritcal Split" })
 vim.keymap.set("n", "<leader>w", ":w|b#|bd#<CR>", { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>cw", ":wa | :q<CR>", { desc = "Close all buffet in tab" })
@@ -33,6 +44,10 @@ vim.keymap.set("n", "<leader>e", ":Neotree toggle reveal<cr>", { desc = "Toggle 
 -- Theme picker keybinding is now defined in lua/custom/plugins/theme_picker.lua
 vim.keymap.set("n", "<leader><Tab>", ":b#<cr>", { desc = "Previous buffer" })
 vim.keymap.set("v", "p", '"_dP', { desc = "Stop yanking" })
+
+vim.keymap.set("n", "<leader>fm", function()
+	require("conform").format({ async = true })
+end, { desc = "Format current buffer with Conform" })
 
 vim.keymap.set("n", "<leader>sb", "<C-w>x", { desc = "swap two buffers" })
 vim.g.editorconfig = true
@@ -445,6 +460,36 @@ require("lazy").setup({
 				pickers = {
 					buffers = {
 						sort_lastused = true,
+						mappings = {
+							i = {
+								["<c-d>"] = "delete_buffer", -- Delete buffer with Ctrl-d in insert mode
+							},
+							n = {
+								["d"] = function(prompt_bufnr)
+									local action_state = require("telescope.actions.state")
+									local current_picker = action_state.get_current_picker(prompt_bufnr)
+									local multi_selections = current_picker:get_multi_selection()
+									if next(multi_selections) == nil then
+										local selection = action_state.get_selected_entry()
+										local bufnr = selection.bufnr
+										-- Save the buffer
+										vim.api.nvim_buf_call(bufnr, function()
+											vim.cmd("write")
+										end)
+									else
+										-- Save all selected buffers
+										for _, selection in ipairs(multi_selections) do
+											local bufnr = selection.bufnr
+											vim.api.nvim_buf_call(bufnr, function()
+												vim.cmd("write")
+											end)
+										end
+									end
+									-- Now delete the buffer(s)
+									require("telescope.actions").delete_buffer(prompt_bufnr)
+								end,
+							},
+						},
 					},
 				},
 				extensions = {
@@ -718,7 +763,8 @@ require("lazy").setup({
 				--
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
+				javascript = { "prettier" },
+				php = { "pint" },
 			},
 		},
 	},
