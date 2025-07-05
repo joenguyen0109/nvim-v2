@@ -34,7 +34,14 @@ vim.keymap.set("n", "<leader>sa", function()
 end, { desc = "Save all files and format all buffers" })
 
 vim.keymap.set("n", "|", ":vsplit<CR>", { desc = "Veritcal Split" })
-vim.keymap.set("n", "<leader>w", ":w|b#|bd#<CR>", { desc = "Close buffer" })
+
+vim.keymap.set("n", "<leader>w", function()
+	-- Save the current buffer
+	vim.cmd("write")
+	-- Delete the current buffer
+	vim.cmd("bdelete")
+end, { desc = "Save and delete current buffer" })
+
 vim.keymap.set("n", "<leader>cw", ":wa | :q<CR>", { desc = "Close all buffet in tab" })
 vim.keymap.set("n", "<leader>uh", ":noh<CR>", { desc = "Unhighlight" })
 vim.keymap.set("v", "<", "<gv", { desc = "Stay in indent mode" })
