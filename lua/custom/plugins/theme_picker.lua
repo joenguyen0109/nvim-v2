@@ -7,12 +7,15 @@ return {
 			{ name = "Github Dark", scheme = "github_dark" },
 			{ name = "Gruvbox", scheme = "gruvbox" },
 			{ name = "Kanagawa Wave", scheme = "kanagawa-wave" },
+			{ name = "Kanagawa Lotus", scheme = "kanagawa-lotus" },
 			{ name = "Kanagawa Dragon", scheme = "kanagawa-dragon" },
 			{ name = "Tokyo Night Storm", scheme = "tokyonight-storm" },
 			{ name = "Tokyo Night Night", scheme = "tokyonight-night" },
 			{ name = "Tokyo Night Moon", scheme = "tokyonight-moon" },
 			{ name = "Owl", scheme = "night-owl" },
 			{ name = "Poimandres", scheme = "poimandres" },
+			{ name = "Nightfox", scheme = "nightfox" },
+			{ name = "Dawnfox", scheme = "dawnfox" },
 		}
 
 		-- Path to save the theme preference
