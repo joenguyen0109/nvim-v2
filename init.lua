@@ -10,9 +10,6 @@ vim.keymap.set("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower
 vim.keymap.set("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<leader>1", "<C-w>w", { desc = "focus to the first window" })
 vim.keymap.set("n", "<leader>of", ":Telescope oldfiles<CR>", { desc = "Open previous files" })
-vim.keymap.set("n", "<leader>fd", ":FlutterDevices<CR>", { desc = "Open list of devices for flutter" })
-vim.keymap.set("n", "<leader>fr", ":FlutterRun<CR>", { desc = "Run flutter project" })
-vim.keymap.set("n", "<leader>fe", ":FlutterEmulators<CR>", { desc = "Open Flutter emulators" })
 vim.keymap.set("n", "<leader>ge", ":Telescope diagnostic<CR>", { desc = "Show projects diagnostic" })
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Quick Esc" })
@@ -38,9 +35,9 @@ vim.keymap.set("n", "|", ":vsplit<CR>", { desc = "Veritcal Split" })
 vim.keymap.set("n", "<leader>w", function()
 	-- Save the current buffer
 	vim.cmd("write")
-	-- Delete the current buffer
-	vim.cmd("bdelete")
-end, { desc = "Save and delete current buffer" })
+	-- Delete the buffer without closing the split
+	require("mini.bufremove").delete(0, false)
+end, { desc = "Save and delete current buffer (keep split)" })
 
 vim.keymap.set("n", "<leader>cw", ":wa | :q<CR>", { desc = "Close all buffet in tab" })
 vim.keymap.set("n", "<leader>uh", ":noh<CR>", { desc = "Unhighlight" })
@@ -462,7 +459,7 @@ require("lazy").setup({
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
 				defaults = {
-					path_display = { "truncate" },
+					path_display = { "smart" },
 					file_ignore_patterns = { "vendor/*" },
 				},
 				pickers = {
@@ -926,6 +923,7 @@ require("lazy").setup({
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
 		config = function()
+			require("mini.bufremove").setup()
 			-- Better Around/Inside textobjects
 			--
 			-- Examples:
